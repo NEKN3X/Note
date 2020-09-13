@@ -17,6 +17,54 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  DateTimeFieldUpdateOperationsInput: {
+    // input type
+    set?: NexusGenScalars["DateTime"] | null; // DateTime
+  };
+  DateTimeFilter: {
+    // input type
+    equals?: NexusGenScalars["DateTime"] | null; // DateTime
+    gt?: NexusGenScalars["DateTime"] | null; // DateTime
+    gte?: NexusGenScalars["DateTime"] | null; // DateTime
+    in?: NexusGenScalars["DateTime"][] | null; // [DateTime!]
+    lt?: NexusGenScalars["DateTime"] | null; // DateTime
+    lte?: NexusGenScalars["DateTime"] | null; // DateTime
+    not?: NexusGenInputs["NestedDateTimeFilter"] | null; // NestedDateTimeFilter
+    notIn?: NexusGenScalars["DateTime"][] | null; // [DateTime!]
+  };
+  IntFilter: {
+    // input type
+    equals?: number | null; // Int
+    gt?: number | null; // Int
+    gte?: number | null; // Int
+    in?: number[] | null; // [Int!]
+    lt?: number | null; // Int
+    lte?: number | null; // Int
+    not?: NexusGenInputs["NestedIntFilter"] | null; // NestedIntFilter
+    notIn?: number[] | null; // [Int!]
+  };
+  NestedDateTimeFilter: {
+    // input type
+    equals?: NexusGenScalars["DateTime"] | null; // DateTime
+    gt?: NexusGenScalars["DateTime"] | null; // DateTime
+    gte?: NexusGenScalars["DateTime"] | null; // DateTime
+    in?: NexusGenScalars["DateTime"][] | null; // [DateTime!]
+    lt?: NexusGenScalars["DateTime"] | null; // DateTime
+    lte?: NexusGenScalars["DateTime"] | null; // DateTime
+    not?: NexusGenInputs["NestedDateTimeFilter"] | null; // NestedDateTimeFilter
+    notIn?: NexusGenScalars["DateTime"][] | null; // [DateTime!]
+  };
+  NestedIntFilter: {
+    // input type
+    equals?: number | null; // Int
+    gt?: number | null; // Int
+    gte?: number | null; // Int
+    in?: number[] | null; // [Int!]
+    lt?: number | null; // Int
+    lte?: number | null; // Int
+    not?: NexusGenInputs["NestedIntFilter"] | null; // NestedIntFilter
+    notIn?: number[] | null; // [Int!]
+  };
   NestedStringFilter: {
     // input type
     contains?: string | null; // String
@@ -30,6 +78,102 @@ export interface NexusGenInputs {
     not?: NexusGenInputs["NestedStringFilter"] | null; // NestedStringFilter
     notIn?: string[] | null; // [String!]
     startsWith?: string | null; // String
+  };
+  NoteCreateManyWithoutAuthorInput: {
+    // input type
+    connect?: NexusGenInputs["NoteWhereUniqueInput"][] | null; // [NoteWhereUniqueInput!]
+    create?: NexusGenInputs["NoteCreateWithoutAuthorInput"][] | null; // [NoteCreateWithoutAuthorInput!]
+  };
+  NoteCreateWithoutAuthorInput: {
+    // input type
+    content: string; // String!
+    createdAt?: NexusGenScalars["DateTime"] | null; // DateTime
+    id?: string | null; // String
+    title: string; // String!
+    updatedAt?: NexusGenScalars["DateTime"] | null; // DateTime
+  };
+  NoteListRelationFilter: {
+    // input type
+    every?: NexusGenInputs["NoteWhereInput"] | null; // NoteWhereInput
+    none?: NexusGenInputs["NoteWhereInput"] | null; // NoteWhereInput
+    some?: NexusGenInputs["NoteWhereInput"] | null; // NoteWhereInput
+  };
+  NoteScalarWhereInput: {
+    // input type
+    AND?: NexusGenInputs["NoteScalarWhereInput"][] | null; // [NoteScalarWhereInput!]
+    authorId?: NexusGenInputs["IntFilter"] | null; // IntFilter
+    content?: NexusGenInputs["StringFilter"] | null; // StringFilter
+    createdAt?: NexusGenInputs["DateTimeFilter"] | null; // DateTimeFilter
+    id?: NexusGenInputs["StringFilter"] | null; // StringFilter
+    NOT?: NexusGenInputs["NoteScalarWhereInput"][] | null; // [NoteScalarWhereInput!]
+    OR?: NexusGenInputs["NoteScalarWhereInput"][] | null; // [NoteScalarWhereInput!]
+    title?: NexusGenInputs["StringFilter"] | null; // StringFilter
+    updatedAt?: NexusGenInputs["DateTimeFilter"] | null; // DateTimeFilter
+  };
+  NoteUpdateManyDataInput: {
+    // input type
+    content?: NexusGenInputs["StringFieldUpdateOperationsInput"] | null; // StringFieldUpdateOperationsInput
+    createdAt?: NexusGenInputs["DateTimeFieldUpdateOperationsInput"] | null; // DateTimeFieldUpdateOperationsInput
+    id?: NexusGenInputs["StringFieldUpdateOperationsInput"] | null; // StringFieldUpdateOperationsInput
+    title?: NexusGenInputs["StringFieldUpdateOperationsInput"] | null; // StringFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs["DateTimeFieldUpdateOperationsInput"] | null; // DateTimeFieldUpdateOperationsInput
+  };
+  NoteUpdateManyWithWhereNestedInput: {
+    // input type
+    data: NexusGenInputs["NoteUpdateManyDataInput"]; // NoteUpdateManyDataInput!
+    where: NexusGenInputs["NoteScalarWhereInput"]; // NoteScalarWhereInput!
+  };
+  NoteUpdateManyWithoutAuthorInput: {
+    // input type
+    connect?: NexusGenInputs["NoteWhereUniqueInput"][] | null; // [NoteWhereUniqueInput!]
+    create?: NexusGenInputs["NoteCreateWithoutAuthorInput"][] | null; // [NoteCreateWithoutAuthorInput!]
+    delete?: NexusGenInputs["NoteWhereUniqueInput"][] | null; // [NoteWhereUniqueInput!]
+    deleteMany?: NexusGenInputs["NoteScalarWhereInput"][] | null; // [NoteScalarWhereInput!]
+    disconnect?: NexusGenInputs["NoteWhereUniqueInput"][] | null; // [NoteWhereUniqueInput!]
+    set?: NexusGenInputs["NoteWhereUniqueInput"][] | null; // [NoteWhereUniqueInput!]
+    update?:
+      | NexusGenInputs["NoteUpdateWithWhereUniqueWithoutAuthorInput"][]
+      | null; // [NoteUpdateWithWhereUniqueWithoutAuthorInput!]
+    updateMany?: NexusGenInputs["NoteUpdateManyWithWhereNestedInput"][] | null; // [NoteUpdateManyWithWhereNestedInput!]
+    upsert?:
+      | NexusGenInputs["NoteUpsertWithWhereUniqueWithoutAuthorInput"][]
+      | null; // [NoteUpsertWithWhereUniqueWithoutAuthorInput!]
+  };
+  NoteUpdateWithWhereUniqueWithoutAuthorInput: {
+    // input type
+    data: NexusGenInputs["NoteUpdateWithoutAuthorDataInput"]; // NoteUpdateWithoutAuthorDataInput!
+    where: NexusGenInputs["NoteWhereUniqueInput"]; // NoteWhereUniqueInput!
+  };
+  NoteUpdateWithoutAuthorDataInput: {
+    // input type
+    content?: NexusGenInputs["StringFieldUpdateOperationsInput"] | null; // StringFieldUpdateOperationsInput
+    createdAt?: NexusGenInputs["DateTimeFieldUpdateOperationsInput"] | null; // DateTimeFieldUpdateOperationsInput
+    id?: NexusGenInputs["StringFieldUpdateOperationsInput"] | null; // StringFieldUpdateOperationsInput
+    title?: NexusGenInputs["StringFieldUpdateOperationsInput"] | null; // StringFieldUpdateOperationsInput
+    updatedAt?: NexusGenInputs["DateTimeFieldUpdateOperationsInput"] | null; // DateTimeFieldUpdateOperationsInput
+  };
+  NoteUpsertWithWhereUniqueWithoutAuthorInput: {
+    // input type
+    create: NexusGenInputs["NoteCreateWithoutAuthorInput"]; // NoteCreateWithoutAuthorInput!
+    update: NexusGenInputs["NoteUpdateWithoutAuthorDataInput"]; // NoteUpdateWithoutAuthorDataInput!
+    where: NexusGenInputs["NoteWhereUniqueInput"]; // NoteWhereUniqueInput!
+  };
+  NoteWhereInput: {
+    // input type
+    AND?: NexusGenInputs["NoteWhereInput"][] | null; // [NoteWhereInput!]
+    author?: NexusGenInputs["UserWhereInput"] | null; // UserWhereInput
+    authorId?: NexusGenInputs["IntFilter"] | null; // IntFilter
+    content?: NexusGenInputs["StringFilter"] | null; // StringFilter
+    createdAt?: NexusGenInputs["DateTimeFilter"] | null; // DateTimeFilter
+    id?: NexusGenInputs["StringFilter"] | null; // StringFilter
+    NOT?: NexusGenInputs["NoteWhereInput"][] | null; // [NoteWhereInput!]
+    OR?: NexusGenInputs["NoteWhereInput"][] | null; // [NoteWhereInput!]
+    title?: NexusGenInputs["StringFilter"] | null; // StringFilter
+    updatedAt?: NexusGenInputs["DateTimeFilter"] | null; // DateTimeFilter
+  };
+  NoteWhereUniqueInput: {
+    // input type
+    id?: string | null; // String
   };
   StringFieldUpdateOperationsInput: {
     // input type
@@ -51,34 +195,44 @@ export interface NexusGenInputs {
   };
   UserCreateInput: {
     // input type
-    id?: string | null; // String
+    createdAt?: NexusGenScalars["DateTime"] | null; // DateTime
     name: string; // String!
+    notes?: NexusGenInputs["NoteCreateManyWithoutAuthorInput"] | null; // NoteCreateManyWithoutAuthorInput
+    role?: NexusGenEnums["Role"] | null; // Role
   };
   UserUpdateInput: {
     // input type
-    id?: NexusGenInputs["StringFieldUpdateOperationsInput"] | null; // StringFieldUpdateOperationsInput
+    createdAt?: NexusGenInputs["DateTimeFieldUpdateOperationsInput"] | null; // DateTimeFieldUpdateOperationsInput
     name?: NexusGenInputs["StringFieldUpdateOperationsInput"] | null; // StringFieldUpdateOperationsInput
+    notes?: NexusGenInputs["NoteUpdateManyWithoutAuthorInput"] | null; // NoteUpdateManyWithoutAuthorInput
+    role?: NexusGenEnums["Role"] | null; // Role
   };
   UserUpdateManyMutationInput: {
     // input type
-    id?: NexusGenInputs["StringFieldUpdateOperationsInput"] | null; // StringFieldUpdateOperationsInput
+    createdAt?: NexusGenInputs["DateTimeFieldUpdateOperationsInput"] | null; // DateTimeFieldUpdateOperationsInput
     name?: NexusGenInputs["StringFieldUpdateOperationsInput"] | null; // StringFieldUpdateOperationsInput
+    role?: NexusGenEnums["Role"] | null; // Role
   };
   UserWhereInput: {
     // input type
     AND?: NexusGenInputs["UserWhereInput"][] | null; // [UserWhereInput!]
-    id?: NexusGenInputs["StringFilter"] | null; // StringFilter
+    createdAt?: NexusGenInputs["DateTimeFilter"] | null; // DateTimeFilter
+    id?: NexusGenInputs["IntFilter"] | null; // IntFilter
     name?: NexusGenInputs["StringFilter"] | null; // StringFilter
     NOT?: NexusGenInputs["UserWhereInput"][] | null; // [UserWhereInput!]
+    notes?: NexusGenInputs["NoteListRelationFilter"] | null; // NoteListRelationFilter
     OR?: NexusGenInputs["UserWhereInput"][] | null; // [UserWhereInput!]
+    role?: NexusGenEnums["Role"] | null; // Role
   };
   UserWhereUniqueInput: {
     // input type
-    id?: string | null; // String
+    id?: number | null; // Int
   };
 }
 
-export interface NexusGenEnums {}
+export interface NexusGenEnums {
+  Role: "ADMIN" | "USER";
+}
 
 export interface NexusGenScalars {
   String: string;
@@ -86,6 +240,7 @@ export interface NexusGenScalars {
   Float: number;
   Boolean: boolean;
   ID: string;
+  DateTime: any;
 }
 
 export interface NexusGenRootTypes {
@@ -97,13 +252,30 @@ export interface NexusGenRootTypes {
   Query: {};
   User: {
     // root type
-    id: string; // String!
+    id: number; // Int!
     name: string; // String!
   };
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
+  DateTimeFieldUpdateOperationsInput: NexusGenInputs["DateTimeFieldUpdateOperationsInput"];
+  DateTimeFilter: NexusGenInputs["DateTimeFilter"];
+  IntFilter: NexusGenInputs["IntFilter"];
+  NestedDateTimeFilter: NexusGenInputs["NestedDateTimeFilter"];
+  NestedIntFilter: NexusGenInputs["NestedIntFilter"];
   NestedStringFilter: NexusGenInputs["NestedStringFilter"];
+  NoteCreateManyWithoutAuthorInput: NexusGenInputs["NoteCreateManyWithoutAuthorInput"];
+  NoteCreateWithoutAuthorInput: NexusGenInputs["NoteCreateWithoutAuthorInput"];
+  NoteListRelationFilter: NexusGenInputs["NoteListRelationFilter"];
+  NoteScalarWhereInput: NexusGenInputs["NoteScalarWhereInput"];
+  NoteUpdateManyDataInput: NexusGenInputs["NoteUpdateManyDataInput"];
+  NoteUpdateManyWithWhereNestedInput: NexusGenInputs["NoteUpdateManyWithWhereNestedInput"];
+  NoteUpdateManyWithoutAuthorInput: NexusGenInputs["NoteUpdateManyWithoutAuthorInput"];
+  NoteUpdateWithWhereUniqueWithoutAuthorInput: NexusGenInputs["NoteUpdateWithWhereUniqueWithoutAuthorInput"];
+  NoteUpdateWithoutAuthorDataInput: NexusGenInputs["NoteUpdateWithoutAuthorDataInput"];
+  NoteUpsertWithWhereUniqueWithoutAuthorInput: NexusGenInputs["NoteUpsertWithWhereUniqueWithoutAuthorInput"];
+  NoteWhereInput: NexusGenInputs["NoteWhereInput"];
+  NoteWhereUniqueInput: NexusGenInputs["NoteWhereUniqueInput"];
   StringFieldUpdateOperationsInput: NexusGenInputs["StringFieldUpdateOperationsInput"];
   StringFilter: NexusGenInputs["StringFilter"];
   UserCreateInput: NexusGenInputs["UserCreateInput"];
@@ -111,11 +283,13 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   UserUpdateManyMutationInput: NexusGenInputs["UserUpdateManyMutationInput"];
   UserWhereInput: NexusGenInputs["UserWhereInput"];
   UserWhereUniqueInput: NexusGenInputs["UserWhereUniqueInput"];
+  Role: NexusGenEnums["Role"];
   String: NexusGenScalars["String"];
   Int: NexusGenScalars["Int"];
   Float: NexusGenScalars["Float"];
   Boolean: NexusGenScalars["Boolean"];
   ID: NexusGenScalars["ID"];
+  DateTime: NexusGenScalars["DateTime"];
 }
 
 export interface NexusGenFieldTypes {
@@ -140,7 +314,7 @@ export interface NexusGenFieldTypes {
   };
   User: {
     // field return type
-    id: string; // String!
+    id: number; // Int!
     name: string; // String!
   };
 }
@@ -196,7 +370,24 @@ export type NexusGenObjectNames =
   | "User";
 
 export type NexusGenInputNames =
+  | "DateTimeFieldUpdateOperationsInput"
+  | "DateTimeFilter"
+  | "IntFilter"
+  | "NestedDateTimeFilter"
+  | "NestedIntFilter"
   | "NestedStringFilter"
+  | "NoteCreateManyWithoutAuthorInput"
+  | "NoteCreateWithoutAuthorInput"
+  | "NoteListRelationFilter"
+  | "NoteScalarWhereInput"
+  | "NoteUpdateManyDataInput"
+  | "NoteUpdateManyWithWhereNestedInput"
+  | "NoteUpdateManyWithoutAuthorInput"
+  | "NoteUpdateWithWhereUniqueWithoutAuthorInput"
+  | "NoteUpdateWithoutAuthorDataInput"
+  | "NoteUpsertWithWhereUniqueWithoutAuthorInput"
+  | "NoteWhereInput"
+  | "NoteWhereUniqueInput"
   | "StringFieldUpdateOperationsInput"
   | "StringFilter"
   | "UserCreateInput"
@@ -205,11 +396,17 @@ export type NexusGenInputNames =
   | "UserWhereInput"
   | "UserWhereUniqueInput";
 
-export type NexusGenEnumNames = never;
+export type NexusGenEnumNames = "Role";
 
 export type NexusGenInterfaceNames = never;
 
-export type NexusGenScalarNames = "Boolean" | "Float" | "ID" | "Int" | "String";
+export type NexusGenScalarNames =
+  | "Boolean"
+  | "DateTime"
+  | "Float"
+  | "ID"
+  | "Int"
+  | "String";
 
 export type NexusGenUnionNames = never;
 

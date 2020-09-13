@@ -5,6 +5,34 @@ type BatchPayload {
   count: Int!
 }
 
+scalar DateTime
+
+input DateTimeFieldUpdateOperationsInput {
+  set: DateTime
+}
+
+input DateTimeFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeFilter
+  notIn: [DateTime!]
+}
+
+input IntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntFilter
+  notIn: [Int!]
+}
+
 type Mutation {
   bigRedButton: String!
   createOneUser(data: UserCreateInput!): User!
@@ -15,6 +43,28 @@ type Mutation {
     where: UserWhereInput
   ): BatchPayload!
   updateOneUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+}
+
+input NestedDateTimeFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeFilter
+  notIn: [DateTime!]
+}
+
+input NestedIntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntFilter
+  notIn: [Int!]
 }
 
 input NestedStringFilter {
@@ -31,6 +81,98 @@ input NestedStringFilter {
   startsWith: String
 }
 
+input NoteCreateManyWithoutAuthorInput {
+  connect: [NoteWhereUniqueInput!]
+  create: [NoteCreateWithoutAuthorInput!]
+}
+
+input NoteCreateWithoutAuthorInput {
+  content: String!
+  createdAt: DateTime
+  id: String
+  title: String!
+  updatedAt: DateTime
+}
+
+input NoteListRelationFilter {
+  every: NoteWhereInput
+  none: NoteWhereInput
+  some: NoteWhereInput
+}
+
+input NoteScalarWhereInput {
+  AND: [NoteScalarWhereInput!]
+  authorId: IntFilter
+  content: StringFilter
+  createdAt: DateTimeFilter
+  id: StringFilter
+  NOT: [NoteScalarWhereInput!]
+  OR: [NoteScalarWhereInput!]
+  title: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input NoteUpdateManyDataInput {
+  content: StringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  title: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input NoteUpdateManyWithoutAuthorInput {
+  connect: [NoteWhereUniqueInput!]
+  create: [NoteCreateWithoutAuthorInput!]
+  delete: [NoteWhereUniqueInput!]
+  deleteMany: [NoteScalarWhereInput!]
+  disconnect: [NoteWhereUniqueInput!]
+  set: [NoteWhereUniqueInput!]
+  update: [NoteUpdateWithWhereUniqueWithoutAuthorInput!]
+  updateMany: [NoteUpdateManyWithWhereNestedInput!]
+  upsert: [NoteUpsertWithWhereUniqueWithoutAuthorInput!]
+}
+
+input NoteUpdateManyWithWhereNestedInput {
+  data: NoteUpdateManyDataInput!
+  where: NoteScalarWhereInput!
+}
+
+input NoteUpdateWithoutAuthorDataInput {
+  content: StringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  title: StringFieldUpdateOperationsInput
+  updatedAt: DateTimeFieldUpdateOperationsInput
+}
+
+input NoteUpdateWithWhereUniqueWithoutAuthorInput {
+  data: NoteUpdateWithoutAuthorDataInput!
+  where: NoteWhereUniqueInput!
+}
+
+input NoteUpsertWithWhereUniqueWithoutAuthorInput {
+  create: NoteCreateWithoutAuthorInput!
+  update: NoteUpdateWithoutAuthorDataInput!
+  where: NoteWhereUniqueInput!
+}
+
+input NoteWhereInput {
+  AND: [NoteWhereInput!]
+  author: UserWhereInput
+  authorId: IntFilter
+  content: StringFilter
+  createdAt: DateTimeFilter
+  id: StringFilter
+  NOT: [NoteWhereInput!]
+  OR: [NoteWhereInput!]
+  title: StringFilter
+  updatedAt: DateTimeFilter
+}
+
+input NoteWhereUniqueInput {
+  id: String
+}
+
 type Query {
   allUsers: [User!]!
   user(where: UserWhereUniqueInput!): User
@@ -40,6 +182,11 @@ type Query {
     first: Int
     last: Int
   ): [User!]!
+}
+
+enum Role {
+  ADMIN
+  USER
 }
 
 input StringFieldUpdateOperationsInput {
@@ -61,33 +208,41 @@ input StringFilter {
 }
 
 type User {
-  id: String!
+  id: Int!
   name: String!
 }
 
 input UserCreateInput {
-  id: String
+  createdAt: DateTime
   name: String!
+  notes: NoteCreateManyWithoutAuthorInput
+  role: Role
 }
 
 input UserUpdateInput {
-  id: StringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
+  notes: NoteUpdateManyWithoutAuthorInput
+  role: Role
 }
 
 input UserUpdateManyMutationInput {
-  id: StringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
+  role: Role
 }
 
 input UserWhereInput {
   AND: [UserWhereInput!]
-  id: StringFilter
+  createdAt: DateTimeFilter
+  id: IntFilter
   name: StringFilter
   NOT: [UserWhereInput!]
+  notes: NoteListRelationFilter
   OR: [UserWhereInput!]
+  role: Role
 }
 
 input UserWhereUniqueInput {
-  id: String
+  id: Int
 }
