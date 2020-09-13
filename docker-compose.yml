@@ -1,0 +1,43 @@
+version: "3.8"
+services:
+  db:
+    image: postgres:12
+    container_name: $DB_HOSTNAME
+    hostname: $DB_HOSTNAME
+    ports:
+      - $DB_PORT:5432
+    tty: true
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=$POSTGRES_USER
+      - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+      - POSTGRES_DB=$POSTGRES_DB
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: $CLIENT_HOSTNAME
+    hostname: $CLIENT_HOSTNAME
+    ports:
+      - $CLIENT_PORT:3000
+    tty: true
+    volumes:
+      - ./client:/usr/app
+    working_dir: /usr/app
+    command: $CLIENT_CMD
+    env_file: .env
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: $SERVER_HOSTNAME
+    hostname: $SERVER_HOSTNAME
+    ports:
+      - $SERVER_PORT:4000
+    tty: true
+    volumes:
+      - ./server:/usr/app
+    working_dir: /usr/app
+    command: $SERVER_CMD
+    env_file: .env
