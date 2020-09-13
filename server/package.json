@@ -6,6 +6,7 @@
     "dev": "ts-node-dev --no-notify --respawn --transpile-only src/index.ts",
     "generate:nexus": "ts-node-dev --transpile-only src/schema",
     "generate:prisma": "prisma generate",
+    "generate:all": "npm run generate:prisma && npm run migrate:save && npm run migrate:up && npm run generate:nexus",
     "migrate:save": "prisma migrate save --experimental",
     "migrate:up": "prisma migrate up --experimental",
     "migrate:down": "prisma migrate down 1 --experimental"

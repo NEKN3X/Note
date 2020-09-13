@@ -1,19 +1,18 @@
 import { mutationType } from '@nexus/schema'
 
-export const bigRedButton = mutationType({
+export const Mutation = mutationType({
   definition(t) {
-    t.field('bigRedButton', {
-      type: 'String',
-      async resolve(_parent, _args, ctx) {
-        const { count } = await ctx.prisma.user.deleteMany({})
-        return `${count} user(s) destroyed. Thanos will be proud.`
-      },
-    })
-
+    // User
     t.crud.createOneUser()
     t.crud.deleteOneUser()
-    t.crud.deleteManyUser()
     t.crud.updateOneUser()
     t.crud.updateManyUser()
+
+    // Note
+    t.crud.createOneNote()
+    t.crud.deleteOneNote()
+    t.crud.deleteManyNote()
+    t.crud.updateOneNote()
+    t.crud.updateManyNote()
   },
 })
